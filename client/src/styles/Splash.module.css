@@ -9,7 +9,7 @@
   border-radius: 1rem;
   padding: 4rem 1rem;
   text-align: center;
-  background-color: antiquewhite;
+  background-image: linear-gradient(25deg, rgb(243, 237, 230), var(--offwhite));
   --shadow-col: rgba(0, 0, 0, 0.15);
   box-shadow: 0.65rem 1.25rem 2rem var(--shadow-col),
     -0.65rem 1.15rem 2rem var(--shadow-col);
@@ -22,7 +22,7 @@
   text-align: center;
 }
 .titleText {
-  font-family: "Adria Deco";
+  font-family: "Adria Deco", monospace;
   font-size: 5rem;
 }
 .latestRelease {

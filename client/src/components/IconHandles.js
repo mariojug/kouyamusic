@@ -19,6 +19,7 @@ const icons = {
       href="https://open.spotify.com/artist/6hkz5y5BVt1YkVlFJ8fk4A?si=H4BTfm6XQheprCM5h4XpCw"
       className={styles.spotify}
       target="_blank"
+      rel="noreferrer"
     >
       <Spotify />
     </a>
@@ -28,6 +29,7 @@ const icons = {
       href="https://music.apple.com/us/artist/kouya/id1471742584"
       className={styles.applemusic}
       target="_blank"
+      rel="noreferrer"
     >
       <Applemusic />
     </a>
@@ -37,6 +39,7 @@ const icons = {
       href="https://soundcloud.com/kouyamusic"
       className={styles.soundcloud}
       target="_blank"
+      rel="noreferrer"
     >
       <Soundcloud />
     </a>
@@ -46,6 +49,7 @@ const icons = {
       href="https://kouyamusic.bandcamp.com"
       className={styles.bandcamp}
       target="_blank"
+      rel="noreferrer"
     >
       <Bandcamp />
     </a>
@@ -55,6 +59,7 @@ const icons = {
       href="https://instagram.com/kouya.j/"
       className={styles.instagram}
       target="_blank"
+      rel="noreferrer"
     >
       <Instagram />
     </a>
@@ -64,6 +69,7 @@ const icons = {
       href="https://github.com/mariojug"
       className={styles.github}
       target="_blank"
+      rel="noreferrer"
     >
       <Github />
     </a>
@@ -73,6 +79,7 @@ const icons = {
       href="https://www.linkedin.com/in/mario-joseph-juguilon/"
       className={styles.linkedin}
       target="_blank"
+      rel="noreferrer"
     >
       <Linkedin />
     </a>
@@ -82,6 +89,7 @@ const icons = {
       href="https://utaustin.joinhandshake.com/users/15473187"
       className={styles.handshake}
       target="_blank"
+      rel="noreferrer"
     >
       <Handshake />
     </a>

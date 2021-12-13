@@ -7,7 +7,7 @@ const NavComponent = () => {
     <>
       <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
         <Container>
-          <Navbar.Brand href="/" className="mainTitle">
+          <Navbar.Brand href="/" className={styles.navTitle}>
             kouya
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="nbdd" />

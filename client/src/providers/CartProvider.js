@@ -6,11 +6,13 @@ const CartProvider = ({ children }) => {
   const [cart, updateCart] = React.useState({});
   const [cartTotal, updateCartTotal] = React.useState(0);
 
-  const leaseOptions = {
-    0: { price: 0, descript: "select lease" },
-    1: { price: 40, descript: "$ 40 usd | .mp3 lease + stems" },
-    2: { price: 85, descript: "$ 85 usd | .wav lease + stems" },
-  };
+  const leaseOptions = React.useMemo(() => {
+    return [
+      { price: 0, descript: "select lease" },
+      { price: 40, descript: "$ 40 usd | .mp3 lease + stems" },
+      { price: 85, descript: "$ 85 usd | .wav lease + stems" },
+    ];
+  }, []);
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -53,24 +55,21 @@ const CartProvider = ({ children }) => {
   };
 
   const isInCart = (id) => {
-    const truthArr = cart.map((item) => item.id === id);
-    return truthArr.some();
+    return cart.map((item) => item.id === id).some();
+  };
+
+  const exports = {
+    cart,
+    addToCart,
+    removeFromCart,
+    clearCart,
+    isInCart,
+    leaseOptions,
+    cartTotal,
   };
 
   return (
-    <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        clearCart,
-        isInCart,
-        leaseOptions,
-        cartTotal,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+    <CartContext.Provider value={exports}>{children}</CartContext.Provider>
   );
 };
 

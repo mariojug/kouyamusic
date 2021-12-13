@@ -47,11 +47,9 @@ const SrcProvider = ({ children }) => {
     return srcContent[id][query];
   };
 
-  return (
-    <SrcContext.Provider value={{ srcContent, getFromSrc, loadSrc, srcLoaded }}>
-      {children}
-    </SrcContext.Provider>
-  );
+  const exports = { srcContent, getFromSrc, loadSrc, srcLoaded };
+
+  return <SrcContext.Provider value={exports}>{children}</SrcContext.Provider>;
 };
 
 export default SrcProvider;

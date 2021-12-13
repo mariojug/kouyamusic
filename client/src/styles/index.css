@@ -19,10 +19,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.mainTitle {
-  font-family: "Adria Deco", monospace;
-}
-
 code {
   font-family: var(--default-font);
 }

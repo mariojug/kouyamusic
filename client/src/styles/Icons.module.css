@@ -15,12 +15,13 @@
 .linkedin,
 .handshake {
   margin: 0;
-  font-size: 2rem;
+  font-size: 4.5vmin;
   color: black;
   cursor: pointer;
-  padding: 0rem 0.5rem;
+  padding: 0vw 0.5vw;
   animation-duration: 0.45s;
   animation-name: ondehover;
+  --drop-shad: drop-shadow(0vw 0vw 1vw var(--is-color));
 }
 .spotify:hover,
 .applemusic:hover,
@@ -30,51 +31,69 @@
 .github:hover,
 .linkedin:hover,
 .handshake:hover {
-  font-size: 2.5rem;
+  font-size: 6vmin;
   animation-duration: 0.15s;
   animation-name: onhover;
   color: var(--h-color);
 }
 .spotify:hover {
   --h-color: #1db954;
+  --is-color: #48b9705d;
+  filter: var(--drop-shad);
 }
 .applemusic:hover {
-  --h-color: #fc3c44;
+  --h-color: #f94c57;
+  --is-color: #ff686d5d;
+  filter: var(--drop-shad);
 }
 .soundcloud:hover {
-  --h-color: #ff7700;
+  --h-color: #f70;
+  --is-color: #ff33005d;
+  filter: var(--drop-shad);
 }
 .bandcamp:hover {
   --h-color: #629aa9;
+  --is-color: #657f865d;
+  filter: var(--drop-shad);
 }
 .instagram:hover {
-  --h-color: #f09433;
+  --h-color: #e1306c;
+  --is-color: #fcaf455d;
+  filter: var(--drop-shad);
 }
 .github:hover {
   --h-color: #6e5494;
+  --is-color: #4e36745d;
+  filter: var(--drop-shad);
 }
 .linkedin:hover {
   --h-color: #0072b1;
+  --is-color: #31b3fa5d;
+  filter: var(--drop-shad);
 }
 .handshake:hover {
   --h-color: #ff2f1c;
+  --is-color: #ff15005d;
+  filter: var(--drop-shad);
 }
 
 @keyframes onhover {
   from {
     color: black;
-    font-size: 2rem;
+    font-size: 4.5vmin;
+    filter: inherit;
   }
   to {
     color: var(--h-color);
-    font-size: 2.5rem;
+    font-size: 6vmin;
+    filter: var(--drop-shad);
   }
 }
 @keyframes ondehover {
   from {
-    font-size: 2.5rem;
+    font-size: 6vmin;
   }
   to {
-    font-size: 2rem;
+    font-size: 4.5vmin;
   }
 }

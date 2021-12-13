@@ -1,3 +1,6 @@
 .empty {
   min-height: 2.5rem;
 }
+.navTitle {
+  font-family: "Adria Deco", monospace;
+}
