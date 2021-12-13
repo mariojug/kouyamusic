@@ -1,0 +1,24 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: center;
+  background-image: linear-gradient(
+    -20deg,
+    white,
+    var(--offwhite),
+    rgb(255, 248, 238)
+  );
+  --box-shad: rgba(0, 0, 0, 0.1);
+  box-shadow: 0.5em 0.5em 1em var(--box-shad), -0.5em 0.87em 2em var(--box-shad);
+  text-align: center;
+  padding: 5rem;
+  border-radius: 2rem;
+}
+.cardWrap {
+  padding: 1rem 2rem;
+}
+.card {
+  border-radius: 0.5rem;
+  padding: 1rem 0rem;
+}

@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600;1,800&display=swap");
+
+@font-face {
+  font-family: "Adria Deco";
+  src: url("./fonts/AdriaDeco-webfont.woff2") format("woff2"),
+    url("./fonts/AdriaDeco-webfont.woff") format("woff");
+}
+
+body {
+  --default-font: "Work Sans", -apple-system, BlinkMacSystemFont, Segoe UI,
+    Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+    sans-serif;
+  --offwhite: #f8f8ff;
+  --black-hover: black;
+  --danger-hover: red;
+  margin: 0;
+  font-family: var(--default-font);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.mainTitle {
+  font-family: "Adria Deco", monospace;
+}
+
+code {
+  font-family: var(--default-font);
+}
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 0rem;
+}
+.header-text-wrap {
+  --shadow-col: rgba(0, 0, 0, 0.2);
+  --shadow-col-2: rgba(226, 213, 177, 0.432);
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
+  max-width: fit-content;
+  padding: 0.2rem;
+  margin: 1em 0em;
+  box-shadow: 1em 0.2em 1em var(--shadow-col),
+    -1.4em 0.2em 1em var(--shadow-col), 0em 0.2em 1em var(--shadow-col-2);
+}
+.header-text {
+  color: var(--offwhite);
+  font-family: Courier, monospace;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+}

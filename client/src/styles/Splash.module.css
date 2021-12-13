@@ -1,0 +1,36 @@
+.splashContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 0rem;
+}
+.splashMain {
+  border-radius: 1rem;
+  padding: 4rem 1rem;
+  text-align: center;
+  background-color: antiquewhite;
+  --shadow-col: rgba(0, 0, 0, 0.15);
+  box-shadow: 0.65rem 1.25rem 2rem var(--shadow-col),
+    -0.65rem 1.15rem 2rem var(--shadow-col);
+}
+.splashTitle {
+  padding-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.titleText {
+  font-family: "Adria Deco";
+  font-size: 5rem;
+}
+.latestRelease {
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+}
+.spotifyContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
