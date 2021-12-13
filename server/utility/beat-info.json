@@ -1,0 +1,36 @@
+{
+  "beat_info": [
+    {
+      "name": "Ambient Genie",
+      "file_path": "Ambient-Genie",
+      "tags": ["electronic", "groove", "trap", "new wave"],
+      "key": "gb minor",
+      "bpm": 152,
+      "id": 2
+    },
+    {
+      "name": "Haunted Trills",
+      "file_path": "Haunted-Trills",
+      "tags": ["electronic", "minimal", "ambient"],
+      "key": "b phrygian",
+      "bpm": 137,
+      "id": 1
+    },
+    {
+      "name": "Hot Air Balloons",
+      "file_path": "Hot-Air-Balloons",
+      "tags": ["electronic", "chill", "smino"],
+      "key": "eb major",
+      "bpm": 119,
+      "id": 3
+    },
+    {
+      "name": "Siren Bounce",
+      "file_path": "Siren-Bounce",
+      "tags": ["electronic", "minimal", "trap", "distorted"],
+      "key": "d minor",
+      "bpm": 119,
+      "id": 4
+    }
+  ]
+}
