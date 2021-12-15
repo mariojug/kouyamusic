@@ -1,30 +1,39 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from "../styles/Splash.module.css";
+import { GridSpace } from "../utility";
 
 const Splash = () => {
+  const PAD_SIZES = {
+    xs: 0,
+    sm: 1,
+    md: 2,
+    lg: 2,
+    xl: 2,
+  };
   return (
     <Container className={styles.splashContainer}>
       <Col className={styles.splashMain} xs={11} md={10} lg={9} xl={8}>
         <Row className={styles.splashTitle}>
-          <Col xs={0} sm={1} md={2} />
+          <GridSpace type="col" dim={PAD_SIZES} />
           <Col xs={12} sm={10} md={8}>
             <h1 class="mainTitle" className={styles.titleText}>
               kouya
             </h1>
-          </Col>{" "}
-          <Col xs={0} sm={1} md={2} />
+          </Col>
+          <GridSpace type="col" dim={PAD_SIZES} />
           {/* col break */}
-          <Col xs={0} sm={1} md={2} />
+          <GridSpace type="col" dim={PAD_SIZES} />
           <Col fluid>
             <i>developer, producer, and musician</i>
           </Col>
-          <Col xs={0} sm={1} md={2} />
+          <GridSpace type="col" dim={PAD_SIZES} />
         </Row>
         <Row>
           <h4 className={styles.latestRelease}>latest release</h4>
           <Container className={styles.spotifyContainer}>
-            <Col xs={0} sm={1} md={2} />
+            <GridSpace type="col" dim={PAD_SIZES} />
+
             <Col xs={12} sm={10} md={8}>
               <iframe
                 title="kouya - heyy ft. piing"
@@ -37,7 +46,7 @@ const Splash = () => {
               ></iframe>
             </Col>
 
-            <Col xs={0} sm={1} md={2} />
+            <GridSpace type="col" dim={PAD_SIZES} />
           </Container>
         </Row>
       </Col>

@@ -3,3 +3,4 @@ app.yaml
 .gcloudignore
 keys/*
 .env
+makefile

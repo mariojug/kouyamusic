@@ -1,6 +1,6 @@
 import React from "react";
 import { CartContext } from "../contexts";
-import CartItem from "../templates/CartObject";
+import { CartItem } from "../utility";
 
 const CartProvider = ({ children }) => {
   const [cart, updateCart] = React.useState({});
@@ -16,9 +16,13 @@ const CartProvider = ({ children }) => {
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
-      const localCart = JSON.parse(localStorage.kouyaCart);
-      if (localCart) {
-        updateCart(localCart);
+      try {
+        // attempts to read in kouyaCart object and update cart state
+        updateCart(JSON.parse(localStorage.kouyaCart));
+      } catch (error) {
+        console.log("Error reading localStorage.kouyaCart");
+        console.log(error);
+        localStorage.setItem("kouyaCart", "{}");
       }
     }
   }, []);

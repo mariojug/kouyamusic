@@ -14,8 +14,10 @@
 .github,
 .linkedin,
 .handshake {
+  --base-size: x-large;
+  --hover-size: xx-large;
   margin: 0;
-  font-size: 4.5vmin;
+  font-size: var(--base-size);
   color: black;
   cursor: pointer;
   padding: 0vw 0.5vw;
@@ -31,7 +33,7 @@
 .github:hover,
 .linkedin:hover,
 .handshake:hover {
-  font-size: 6vmin;
+  font-size: var(--hover-size);
   animation-duration: 0.15s;
   animation-name: onhover;
   color: var(--h-color);
@@ -80,20 +82,20 @@
 @keyframes onhover {
   from {
     color: black;
-    font-size: 4.5vmin;
+    font-size: var(--base-size);
     filter: inherit;
   }
   to {
     color: var(--h-color);
-    font-size: 6vmin;
+    font-size: var(--hover-size);
     filter: var(--drop-shad);
   }
 }
 @keyframes ondehover {
   from {
-    font-size: 6vmin;
+    font-size: var(--hover-size);
   }
   to {
-    font-size: 4.5vmin;
+    font-size: var(--base-size);
   }
 }

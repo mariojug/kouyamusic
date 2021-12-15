@@ -32,4 +32,12 @@ const GridSpace = (props) => {
   }
 };
 
-export { GridSpace };
+const CartItem = (id, title, type) => {
+  return {
+    id: id,
+    title: title,
+    type: type,
+    timeAdded: Date.now(),
+  };
+};
+export { CartItem, GridSpace };

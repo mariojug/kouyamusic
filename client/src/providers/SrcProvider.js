@@ -23,7 +23,7 @@ const SrcProvider = ({ children }) => {
   }, [srcContent]);
 
   const loadSrc = () => {
-    axios.post("http://localhost:8080/api/beatstore/load").then((res) => {
+    axios.post("/api/beatstore/load").then((res) => {
       localStorage.setItem("kouyaSrcExpire", res.headers.expires);
       const content = {};
       res.data.map((item, idx) => {

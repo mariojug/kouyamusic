@@ -41,7 +41,7 @@
 }
 .currentTime,
 .duration {
-  font-size: 1rem;
+  font-size: 0.9rem;
   text-shadow: var(--box-shadow);
   margin: 0;
   max-width: min-content;

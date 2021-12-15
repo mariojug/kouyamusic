@@ -1,0 +1,105 @@
+.component {
+  --grad: linear-gradient(45deg, white, rgb(255, 250, 244));
+  padding: 2rem 0rem 2rem 0rem;
+  margin: 2rem 0rem 2rem 0rem;
+  border-radius: 2rem;
+  display: flex;
+  /* padding: 1rem; */
+  align-items: stretch;
+  justify-content: center;
+  background-image: var(--grad);
+  box-shadow: 0.1rem 1rem 2rem rgba(0, 0, 0, 0.15),
+    -0.1rem 0.7rem 1.3rem rgba(0, 0, 0, 0.15);
+}
+.mainContent {
+  display: flex;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: center;
+  width: auto;
+}
+.mainTextContent {
+  align-items: flex-end;
+  padding: 1rem;
+}
+.title {
+  max-width: fit-content;
+}
+.titleText {
+  width: fit-content;
+  font-size: 2.4vmax;
+  font-weight: 700;
+  font-style: italic;
+  background-color: yellow;
+}
+.showMoreInfo {
+  cursor: pointer;
+}
+.showMoreInfo:hover {
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.015em;
+  font-style: italic;
+  text-decoration: underline;
+}
+.trackDetails {
+  font-size: 0.925rem;
+  font-style: italic;
+  font-weight: 595;
+}
+.detailContent {
+  padding: 1rem;
+}
+.detailKey {
+  font-weight: bold;
+}
+.cartFormWrap {
+  border-radius: 2rem;
+  display: flex;
+  padding: 1.75vmin 1.75vmin 0vmin 0vmin;
+  margin: 1.75vmin 1.75vmin 0vmin 0vmin;
+  flex-direction: column;
+  max-width: fit-content;
+  max-height: min-content;
+  align-items: center;
+  justify-content: flex-start;
+}
+.cartBtnsWrap {
+  padding: 1.25rem 0rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.cartBtnToolbar {
+  display: flex;
+  max-width: fit-content;
+}
+.cartBtn {
+  min-width: 100%;
+  margin: 0.1rem;
+}
+.inCartContainer {
+  font-family: sans-serif;
+  font-weight: 550;
+  padding: 1.5rem 0rem 0rem 0rem;
+  display: flex;
+  flex-direction: column;
+  line-height: 1rem;
+}
+.inCartHeader,
+.inCartText {
+  text-align: center;
+}
+.inCartHeader {
+  font-weight: normal;
+  text-decoration: double underline;
+  font-size: 0.8rem;
+  letter-spacing: 0.05rem;
+  padding-bottom: 0.5rem;
+}
+.inCartText {
+  font-size: 0.75rem;
+  padding: 0.5rem 0rem;
+  margin: 0rem 1rem;
+  background-color: rgba(255, 255, 0, 0.25);
+}

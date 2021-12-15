@@ -1,8 +1,10 @@
 import React from "react";
 import { Stack, Container, Row, Col } from "react-bootstrap";
+import { GridSpace } from "../utility";
 import styles from "../styles/About.module.css";
 
 const About = () => {
+  const size = { xs: 0, sm: 0, md: 1, lg: 2, xl: 3 };
   return (
     <Container className={styles.aboutContainer}>
       <Stack gap={2}>
@@ -15,7 +17,7 @@ const About = () => {
           </h6>
         </Row>
         <Row className={styles.aboutContent}>
-          <Col xs={1} md={2} lg={3} />
+          <GridSpace type="col" dim={size} />
           <Col fluid>
             <p>
               21 y.o fil-am originating from houston, tx. car, music, and tech
@@ -38,7 +40,7 @@ const About = () => {
               project seed.
             </p>
           </Col>
-          <Col xs={1} md={2} lg={3} />
+          <GridSpace type="col" dim={size} />
         </Row>
       </Stack>
     </Container>

@@ -8,11 +8,11 @@ const api = require("./api/index");
 const app = express();
 
 app.use(cors());
-app.use(express.static("build"));
+app.use("/", express.static("build"));
 app.use(express.urlencoded());
 app.use(express.json());
 
 app.use("/api", api);
 
 app.listen(port);
-console.log("Server successfully started at http://localhost:" + port + "/");
+console.log("Server successfully started on PORT " + port);
