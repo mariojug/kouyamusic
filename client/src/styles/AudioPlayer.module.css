@@ -52,8 +52,8 @@
   --bar-bg: rgb(225, 225, 225);
   --seek-before-width: 0%;
   --seek-before-color: black;
-  --playhead: rgb(0, 112, 0);
-  --selected-playhead: rgb(0, 179, 0);
+  --playhead: rgba(0, 0, 0, 0.75);
+  --selected-playhead: rgba(0, 0, 0, 0.5);
 
   appearance: none;
   background: var(--bar-bg);

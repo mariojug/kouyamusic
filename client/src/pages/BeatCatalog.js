@@ -1,31 +1,21 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import { useGlobalPlay, useSrc } from "../hooks";
+import hooks from "../hooks";
 import { TrackWidget } from "../components";
 import { GridSpace } from "../utility";
 import styles from "../styles/BeatCatalog.module.css";
 
 const BeatCatalog = () => {
   const [beatComponents, setBeatComponents] = React.useState(<span />);
-  const { setPlayArray } = useGlobalPlay();
-  const { srcContent } = useSrc();
+  const { setPlayArray } = hooks.useGlobalPlay();
+  const { srcContent, getAudio } = hooks.useSrc();
 
   React.useEffect(() => {
+    getAudio(1);
     let componentArray = [];
 
     for (const [key, item] of Object.entries(srcContent)) {
-      componentArray.push(
-        <TrackWidget
-          id={key}
-          audioURL={item.audioURL}
-          name={item.name}
-          tags={item.tags}
-          musicKey={item.musicKey}
-          bpm={item.bpm}
-          coverURL={item.coverURL}
-          key={key + "bc"}
-        />
-      );
+      componentArray.push(<TrackWidget id={parseInt(key)} key={key + "bc"} />);
     }
     setBeatComponents(componentArray);
     const newPlayArray = new Array(componentArray.length).fill(false);

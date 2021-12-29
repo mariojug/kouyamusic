@@ -1,0 +1,71 @@
+.component {
+  --grad: linear-gradient(45deg, white, rgb(255, 250, 244));
+  padding: 1rem 0rem;
+  margin: 1rem 0rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background-image: var(--grad);
+  box-shadow: 0.1rem 1rem 2rem rgba(0, 0, 0, 0.15),
+    -0.1rem 0.7rem 1.3rem rgba(0, 0, 0, 0.15);
+}
+.mainContentWrap {
+  padding: 1rem;
+  min-width: fit-content;
+  max-width: max-content;
+}
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.priceContainer {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.priceHeader {
+  letter-spacing: 0.01em;
+}
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1em;
+}
+.subTotalContainer {
+  padding: 1rem;
+  flex-direction: row;
+  align-items: space-evenly;
+  width: 100%;
+}
+.priceHeader,
+.price {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.priceHeader {
+  text-align: left;
+}
+.price {
+  text-align: right;
+}
+.disclaimerRow {
+  padding: 1rem;
+}
+.toCheckoutRow {
+  align-items: center;
+  justify-content: center;
+}
+.checkoutBtn {
+  width: 75%;
+  margin: 0.1rem;
+}

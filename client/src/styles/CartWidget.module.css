@@ -1,0 +1,124 @@
+.component {
+  --grad: linear-gradient(45deg, white, rgb(255, 250, 244));
+  padding: 1.5rem 0rem;
+  margin: 1.5rem 0rem;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  max-width: fit-content;
+  background-image: var(--grad);
+  box-shadow: 0.1rem 1rem 2rem rgba(0, 0, 0, 0.15),
+    -0.1rem 0.7rem 1.3rem rgba(0, 0, 0, 0.15);
+}
+.mainContentWrap {
+  padding: 1rem;
+  min-width: fit-content;
+  max-width: max-content;
+}
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  padding: 1rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.coverArt {
+  /* width: 20rem;
+  height: auto; */
+}
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+.titleText {
+  width: fit-content;
+  font-size: 2.25rem;
+  font-weight: 700;
+  font-style: italic;
+  background-color: yellow;
+}
+.showMoreInfo {
+  cursor: pointer;
+}
+.showMoreInfo:hover {
+  color: rgba(0, 0, 0, 0.5);
+  letter-spacing: 0.015em;
+  font-style: italic;
+  text-decoration: underline;
+}
+.trackDetails {
+  font-size: 0.925rem;
+  font-style: italic;
+  font-weight: 595;
+}
+.detailContent {
+  padding: 1rem;
+}
+.detailKey {
+  font-weight: bold;
+}
+.cartFormWrap {
+  border-radius: 2rem;
+  display: flex;
+  padding: 1rem 0.1rem 0.1rem 0.1rem;
+  margin: 0.1rem;
+  flex-direction: column;
+  max-width: fit-content;
+  max-height: min-content;
+  align-items: center;
+  justify-content: center;
+}
+.cartBtnsWrap {
+  padding: 1.25rem 0rem 0rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.cartBtnToolbar {
+  /* display: flex; */
+  min-width: 100%;
+}
+.cartBtn {
+  min-width: 50%;
+  margin: 0.1rem;
+}
+.inCartContainer {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem 0rem 0rem 0rem;
+  font-family: sans-serif;
+  font-weight: 550;
+  line-height: 1rem;
+}
+.inCartHeader,
+.inCartText {
+  font-size: 0.9rem;
+}
+.inCartHeader {
+  font-weight: bold;
+}
+
+.priceContainer {
+  padding: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.priceHeader {
+  letter-spacing: 0.01em;
+}
+.price {
+  font-size: 2rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1em;
+}

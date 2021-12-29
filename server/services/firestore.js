@@ -8,7 +8,8 @@ const {
   Timestamp,
   FieldValue,
 } = require("firebase-admin/firestore");
-const serviceAccount = require("../keys/kouyamusic-d3448f42ba74.json");
+
+const serviceAccount = require("../keys/service.json");
 
 initializeApp({
   credential: cert(serviceAccount),

@@ -8,7 +8,7 @@ const { Storage } = require("@google-cloud/storage");
 
 // client init while devving
 const storage = new Storage({
-  keyFilename: "keys/kouyamusic-d3448f42ba74.json",
+  keyFilename: "./keys/service.json",
 });
 
 // bucket name

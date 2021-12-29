@@ -18,6 +18,8 @@
     "express": "^4.17.1",
     "find-config": "^1.0.0",
     "firebase-admin": "^10.0.0",
-    "fs": "^0.0.1-security"
+    "fs": "^0.0.1-security",
+    "mailgun-js": "^0.22.0",
+    "stripe": "^8.195.0"
   }
 }

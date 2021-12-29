@@ -1,28 +1,38 @@
 /** Based on https://www.youtube.com/watch?v=sqpg1qzJCGQ */
-import React, { useState, useRef } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Container, Col, Row } from "react-bootstrap";
 import { FaPlay, FaPause } from "react-icons/fa";
-import { useGlobalPlay } from "../hooks";
+import Hooks from "../hooks";
 
 import styles from "../styles/AudioPlayer.module.css";
 
 const AudioPlayer = (props) => {
-  /**
-   * Props:
-   * - srcUrl (string)
-   * - idx (int) (trackcomponent.props.id)
-   */
   // state
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [duration, setDuration] = useState(0);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [isPlaying, setIsPlaying] = React.useState(false);
+  const [duration, setDuration] = React.useState(0);
+  const [currentTime, setCurrentTime] = React.useState(0);
+  const [audioURL, setAudioURL] = React.useState();
+  const [audioExpire, setAudioExpire] = React.useState(0);
+
+  const audioExpired = () => audioExpire < Date.now();
 
   // references
-  const audioPlayer = useRef();
-  const progressBar = useRef();
-  const animationRef = useRef();
+  const audioPlayer = React.useRef();
+  const progressBar = React.useRef();
+  const animationRef = React.useRef();
 
-  const { playArray, setPlayArray } = useGlobalPlay();
+  const { playArray, setPlayArray } = Hooks.useGlobalPlay();
+  const { getAudio } = Hooks.useSrc();
+
+  React.useEffect(() => {
+    if (!audioURL || !(audioExpire > Date.now()) || audioExpire === 0) {
+      getAudio(props.idx).then((res) => {
+        setAudioURL(res.data);
+        setAudioExpire(res.expiration);
+      });
+    }
+  }, [audioExpire, setAudioURL, props.idx]);
 
   React.useEffect(() => {
     if (playArray && isPlaying !== playArray[props.idx]) {
@@ -36,7 +46,18 @@ const AudioPlayer = (props) => {
       audioPlayer.current.pause();
       cancelAnimationFrame(animationRef.current);
     }
+
+    // cleanup function
+    return function cleanup() {
+      // setIsPlaying(false);
+    };
   }, [playArray, isPlaying, setPlayArray, props.idx]);
+
+  React.useEffect(() => {
+    if (isPlaying && audioExpired()) {
+      setIsPlaying(false);
+    }
+  }, [isPlaying, audioExpired]);
 
   const endPlayback = () => {
     const prevValue = isPlaying;
@@ -45,7 +66,6 @@ const AudioPlayer = (props) => {
 
   const loadDurationUI = () => {
     const sec = Math.floor(audioPlayer.current.duration);
-
     setDuration(sec);
     progressBar.current.max = sec;
   };
@@ -83,30 +103,39 @@ const AudioPlayer = (props) => {
   };
 
   const changeRange = () => {
+    if (!audioPlayer || !progressBar) {
+      return null;
+    }
     audioPlayer.current.currentTime = progressBar.current.value;
     setPlayerTimeUI();
   };
 
   const whilePlaying = () => {
-    progressBar.current.value = audioPlayer.current.currentTime;
+    if (progressBar?.current) {
+      progressBar.current.value = audioPlayer?.current
+        ? audioPlayer.current.currentTime
+        : 0;
+    }
 
     setPlayerTimeUI();
     animationRef.current = requestAnimationFrame(whilePlaying);
   };
 
   const setPlayerTimeUI = () => {
-    progressBar.current.style.setProperty(
-      "--seek-before-width",
-      `${(progressBar.current.currentTime / duration) * 100}%`
-    );
-    setCurrentTime(progressBar.current.value);
+    if (progressBar?.current) {
+      progressBar.current.style.setProperty(
+        "--seek-before-width",
+        `${(progressBar.current.currentTime / duration) * 100}%`
+      );
+      setCurrentTime(progressBar.current.value);
+    }
   };
 
   return (
     <Container fluid>
       <audio
         ref={audioPlayer}
-        src={props.srcUrl}
+        src={audioURL}
         preload="metadata"
         onPlay={loadDurationUI}
         onLoadedMetadata={loadDurationUI}
@@ -150,3 +179,6 @@ const AudioPlayer = (props) => {
 };
 
 export default AudioPlayer;
+AudioPlayer.propTypes = {
+  idx: PropTypes.number,
+};

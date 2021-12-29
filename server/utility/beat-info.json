@@ -3,10 +3,14 @@
     {
       "name": "Ambient Genie",
       "file_path": "Ambient-Genie",
-      "tags": ["electronic", "groove", "trap", "new wave"],
+      "tags": ["electronic", "groove", "trap", "new 2e"],
       "key": "gb minor",
       "bpm": 152,
-      "id": 2
+      "id": 2,
+      "price_id": {
+        "1": "price_1KBrBCLn1IKQq1hKeECgeYaz",
+        "2": "price_1KBqNTLn1IKQq1hK1ICb8n1n"
+      }
     },
     {
       "name": "Haunted Trills",
@@ -14,7 +18,11 @@
       "tags": ["electronic", "minimal", "ambient"],
       "key": "b phrygian",
       "bpm": 137,
-      "id": 1
+      "id": 1,
+      "price_id": {
+        "1": "price_1KBrBYLn1IKQq1hKMJuhmx0m",
+        "2": "price_1KBqMnLn1IKQq1hK6NVL98Su"
+      }
     },
     {
       "name": "Hot Air Balloons",
@@ -22,7 +30,11 @@
       "tags": ["electronic", "chill", "smino"],
       "key": "eb major",
       "bpm": 119,
-      "id": 3
+      "id": 3,
+      "price_id": {
+        "1": "price_1KBrCMLn1IKQq1hKVJnIhkEd",
+        "2": "price_1KBqPjLn1IKQq1hKDkgnwzuV"
+      }
     },
     {
       "name": "Siren Bounce",
@@ -30,7 +42,11 @@
       "tags": ["electronic", "minimal", "trap", "distorted"],
       "key": "d minor",
       "bpm": 119,
-      "id": 4
+      "id": 4,
+      "price_id": {
+        "1": "price_1KBrCwLn1IKQq1hKg5LdVCos",
+        "2": "price_1KBqT8Ln1IKQq1hK7lfaNG6w"
+      }
     }
   ]
 }

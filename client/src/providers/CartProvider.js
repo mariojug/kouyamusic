@@ -1,7 +1,16 @@
 import React from "react";
 import { CartContext } from "../contexts";
 import { CartItem } from "../utility";
+import config from "../config";
+import axios from "axios";
 
+var API_URL;
+
+if (config.TESTING) {
+  API_URL = "http://localhost:8080/api/beatstore";
+} else {
+  API_URL = "/api/beatstore";
+}
 const CartProvider = ({ children }) => {
   const [cart, updateCart] = React.useState({});
   const [cartTotal, updateCartTotal] = React.useState(0);
@@ -9,8 +18,8 @@ const CartProvider = ({ children }) => {
   const leaseOptions = React.useMemo(() => {
     return [
       { price: 0, descript: "select lease" },
-      { price: 40, descript: "$ 40 usd | .mp3 lease + stems" },
-      { price: 85, descript: "$ 85 usd | .wav lease + stems" },
+      { price: 40, descript: ".mp3 lease + stems" },
+      { price: 85, descript: ".wav lease + stems" },
     ];
   }, []);
 
@@ -62,6 +71,11 @@ const CartProvider = ({ children }) => {
     return cart.map((item) => item.id === id).some();
   };
 
+  const handleSubmitCheckout = () => {
+    // make axios post to /create-checkout-session
+    axios.post(API_URL + "/create-checkout-session", { cart: cart });
+  };
+
   const exports = {
     cart,
     addToCart,
@@ -70,6 +84,7 @@ const CartProvider = ({ children }) => {
     isInCart,
     leaseOptions,
     cartTotal,
+    handleSubmitCheckout,
   };
 
   return (

@@ -1,7 +1,16 @@
-import TrackWidget from "./TrackWidget";
-import Navbar from "./Navbar";
-import { SocialIcons, ProfIcons, AllIcons } from "./IconHandles";
 import AudioPlayer from "./AudioPlayer";
+import CartWidget from "./CartWidget";
+import { SocialIcons, ProfIcons, AllIcons } from "./IconHandles";
+import Navbar from "./Navbar";
+import TrackWidget from "./TrackWidget";
 
 // TODO: add proptypes
-export { TrackWidget, Navbar, SocialIcons, ProfIcons, AllIcons, AudioPlayer };
+export {
+  AudioPlayer,
+  AllIcons,
+  CartWidget,
+  Navbar,
+  ProfIcons,
+  SocialIcons,
+  TrackWidget,
+};
