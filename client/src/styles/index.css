@@ -39,8 +39,6 @@ code {
   max-width: fit-content;
   padding: 0.2rem;
   margin: 1em 0em;
-  box-shadow: 1em 0.2em 1em var(--shadow-col),
-    -1.4em 0.2em 1em var(--shadow-col), 0em 0.2em 1em var(--shadow-col-2);
 }
 .header-text {
   color: var(--offwhite);

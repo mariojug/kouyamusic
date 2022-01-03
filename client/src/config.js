@@ -1,7 +1,7 @@
 // config variables
 
 // TESTING FLAG
-const TESTING = true;
+const TESTING = false;
 
 const exports = { TESTING };
 export default exports;

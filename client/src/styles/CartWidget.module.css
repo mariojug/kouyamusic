@@ -24,10 +24,6 @@
   align-items: flex-start;
   justify-content: flex-start;
 }
-.coverArt {
-  /* width: 20rem;
-  height: auto; */
-}
 .title {
   display: flex;
   flex-direction: column;

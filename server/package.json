@@ -20,6 +20,7 @@
     "firebase-admin": "^10.0.0",
     "fs": "^0.0.1-security",
     "mailgun-js": "^0.22.0",
+    "path": "^0.12.7",
     "stripe": "^8.195.0"
   }
 }

@@ -73,10 +73,15 @@ const CartProvider = ({ children }) => {
 
   const handleCheckout = (email) => {
     // make axios post to /create-checkout-session
-    axios.post(API_URL + "/create-checkout-session", {
-      email: email,
-      cart: cart,
-    });
+    // redirect to stripe url
+    axios
+      .post(API_URL + "/create-checkout-session", {
+        email: email,
+        cart: cart,
+      })
+      .then((res) => {
+        window.location.replace(res.data.redirectURL);
+      });
   };
 
   const exports = {

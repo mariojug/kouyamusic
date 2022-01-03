@@ -1,12 +1,15 @@
 import React from "react";
+import { useSearchParams } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
 import { GridSpace } from "../utility";
 import styles from "../styles/Checkout.module.css";
 
 const Checkout = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const pad = { xs: 0, sm: 1, md: 1, lg: 1, xl: 2 };
   // clears localStorage.kouyaCart upon reaching
-  if (typeof window !== "undefined") {
+  if (typeof window !== "undefined" && searchParams.get("success")) {
     localStorage.setItem("kouyaCart", "");
   }
 

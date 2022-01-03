@@ -3,7 +3,6 @@ require("dotenv").config({ path: require("find-config")(".env") });
 const MG_API_KEY = process.env.MAILGUN_KEY;
 const mailgun = require("mailgun-js");
 const mg = mailgun({ apiKey: MG_API_KEY, domain: "mg.kouyamusic.com" });
-const cors = require("cors");
 
 const STRIPE_KEY = process.env.STRIPE_KEY;
 const YOUR_DOMAIN = "http://kouyamusic.com";
@@ -11,13 +10,13 @@ const YOUR_DOMAIN = "http://kouyamusic.com";
 const stripe = require("stripe")(STRIPE_KEY);
 const express = require("express");
 
+const router = express.Router();
+
 const successToConsole = (type, path) => {
   console.log(
     `${path}: [${type.toUpperCase()}]\n${new Date().toString()}\nSuccessfully served`
   );
 };
-
-const router = express.Router();
 
 const { db } = require("../../services/firestore");
 const {
@@ -30,7 +29,6 @@ const payments_coll = db.collection("payment_temps");
 
 router.use(express.urlencoded({ extended: false }));
 router.use(express.json());
-router.use(cors());
 
 const queryPublicFS = async (req, res, next) => {
   const coll = await beats_coll.get();
@@ -238,7 +236,7 @@ router.post(
       cancel_url: `${YOUR_DOMAIN}/cart?canceled=true`,
     });
 
-    res.redirect(303, session.url);
+    res.json({ redirectURL: session.url });
   }
 );
 
@@ -311,17 +309,14 @@ const sendEmail = (req, res, next) => {
       return;
     }
     console.log(body);
-    res.redirect(303, YOUR_DOMAIN + "/checkout?success=true");
+    next();
   });
   //
 };
 
-router.get(
-  "/checkout-success/:id",
-  validateRedirect,
-  sendEmail,
-  (req, res) => {}
-);
+router.get("/checkout-success/:id", validateRedirect, sendEmail, (req, res) => {
+  res.redirect(303, YOUR_DOMAIN + "/checkout?success=true");
+});
 
 // required query - email, doc, hash
 // validate doc and hash
