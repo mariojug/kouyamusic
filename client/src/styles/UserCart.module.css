@@ -62,10 +62,17 @@
   padding: 1rem;
 }
 .toCheckoutRow {
-  align-items: center;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
   justify-content: center;
 }
+.checkoutCol {
+  text-align: left;
+  width: 100%;
+  padding: 1rem;
+}
 .checkoutBtn {
-  width: 75%;
+  width: 100%;
   margin: 0.1rem;
 }

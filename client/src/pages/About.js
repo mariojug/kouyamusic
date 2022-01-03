@@ -4,7 +4,7 @@ import { GridSpace } from "../utility";
 import styles from "../styles/About.module.css";
 
 const About = () => {
-  const size = { xs: 0, sm: 0, md: 1, lg: 2, xl: 3 };
+  const size = { xs: 0, sm: 0, md: 0, lg: 1, xl: 2 };
   return (
     <Container className={styles.aboutContainer}>
       <Stack gap={2}>

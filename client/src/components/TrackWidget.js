@@ -31,13 +31,11 @@ const TrackWidget = (props) => {
   React.useEffect(() => {
     if (!coverURL || !(coverExpire > Date.now()) || coverExpire === 0) {
       getImage(props.id).then((res) => {
-        console.log("here");
-        console.log(res.data);
         setCoverURL(res.data);
         setCoverExpire(res.expiration);
       });
     }
-  }, [coverURL, coverExpire, setCoverExpire, setCoverURL, props.id]);
+  }, [coverURL, coverExpire, setCoverExpire, setCoverURL, props.id, getImage]);
 
   const trackParams = ["name", "tags", "musicKey", "bpm"];
   const trackDetails = {};

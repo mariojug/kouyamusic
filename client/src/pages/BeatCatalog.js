@@ -20,7 +20,7 @@ const BeatCatalog = () => {
     setBeatComponents(componentArray);
     const newPlayArray = new Array(componentArray.length).fill(false);
     setPlayArray(newPlayArray);
-  }, [srcContent, setPlayArray, setBeatComponents]);
+  }, [srcContent, setPlayArray, setBeatComponents, getAudio]);
 
   const pad = { xs: 0, sm: 1, md: 1, lg: 1, xl: 2 };
 

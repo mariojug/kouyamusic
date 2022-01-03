@@ -4,10 +4,9 @@ const MG_API_KEY = process.env.MAILGUN_KEY;
 const mailgun = require("mailgun-js");
 const mg = mailgun({ apiKey: MG_API_KEY, domain: "mg.kouyamusic.com" });
 const cors = require("cors");
-const STRIPE_KEY =
-  // process.env.STRIPE_KEY ||
-  "sk_test_51JeDJ4Ln1IKQq1hKfgt1twmxJ1eTpdrMlZzAIvCBWNezogAU8GYU4jjsxvp751dqf5V7jRtGtAcF2pQ2TDBof5RL00gY63JEg5";
-const YOUR_DOMAIN = "http://localhost:8080";
+
+const STRIPE_KEY = process.env.STRIPE_KEY;
+const YOUR_DOMAIN = "http://kouyamusic.com";
 
 const stripe = require("stripe")(STRIPE_KEY);
 const express = require("express");
@@ -91,13 +90,41 @@ const queryFileGS = (req, res, next) => {
     expiration = Date.now() + 0.5 * 60 * 10000; // 30 sec from call
     ext = "Cover.JPG";
   }
-
   res.header("expires", expiration);
   // get sample beat url
   getCloudPromise(bucketPath(req.file_path, ext), expiration)
     .then((result) => {
       req.result = result[0];
       next();
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+};
+
+const queryDownloadGS = async (req, res, next) => {
+  const expiration = Date.now() + 2 * 60 * 60 * 1000; // 2 hours
+  req.result = {};
+  res.header("expires", expiration);
+  // query firestore for filepath
+  const docRef = beats_coll.doc(req.params.beatid.toString());
+  const cartItemRef = req.docData.cart[req.params.beatid];
+  await docRef
+    .get()
+    .then((doc) => {
+      console.log(cartItemRef);
+      const ext = cartItemRef.type === 1 ? "beat.mp3" : "Stems.zip";
+      // get url of item
+      getCloudPromise(bucketPath(doc.data().file_path, ext), expiration)
+        .then((result) => {
+          req.result = result[0];
+          next();
+        })
+        .catch((err) => {
+          console.log(err);
+          res.sendStatus(500);
+        });
     })
     .catch((err) => {
       console.log(err);
@@ -119,7 +146,12 @@ const generatePayKeys = (req, res, next) => {
 
   // add ID and hash to firestore database
   const doc_ref = payments_coll.doc(newID);
-  doc_ref.set({ hash: newHash, time: Date.now(), cart: req.body.cart });
+  doc_ref.set({
+    hash: newHash,
+    time: Date.now(),
+    cart: req.body.cart,
+    email: req.body.email,
+  });
   next();
 };
 
@@ -191,61 +223,117 @@ router.post(
   generatePayKeys,
   queryPriceFS,
   async (req, res) => {
-    const rdString = getString(20);
     console.log(req.price_ids);
     const session = await stripe.checkout.sessions.create({
-      line_items: [{ price: "price_1KBsMlLn1IKQq1hKuxOsEmIx", quantity: 1 }],
-      // req.price_ids.map((id) => {
-      //   return {
-      //     // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
-      //     price: id,
-      //     quantity: 1,
-      //   };
-      // }),
+      // [{ price: "price_1KBsMlLn1IKQq1hKuxOsEmIx", quantity: 1 }],
+      line_items: req.price_ids.map((id) => {
+        return {
+          // Provide the exact Price ID (for example, pr_1234) of the product you want to sell
+          price: id,
+          quantity: 1,
+        };
+      }),
       mode: "payment",
       success_url: `${YOUR_DOMAIN}/api/beatstore/checkout-success/${req.pay_id}?success=true&hash=${req.pay_hash}`,
-      cancel_url: `${YOUR_DOMAIN}?canceled=true`,
+      cancel_url: `${YOUR_DOMAIN}/cart?canceled=true`,
     });
 
     res.redirect(303, session.url);
   }
 );
-router.get("/checkout-success/:id", async (req, res) => {
+
+const validateRedirect = async (req, res, next) => {
   // check that the id and hash matches document
-  const user = "mariojjuguilon@gmail.com";
-  const id = req.params.id;
+  const id = req.query.id || req.params.id;
   const hash = req.query.hash;
+
   const doc_ref = payments_coll.doc(id);
   await doc_ref.get().then((doc) => {
-    if (hash === doc.data().hash) {
-      const currDate = () => {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, "0");
-        var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-        var yyyy = today.getFullYear();
+    const docData = doc.data();
 
-        return mm + "/" + dd + "/" + yyyy;
-      };
-      const data = {
-        from: "KOUYA <noreply@kouyamusic.com>",
-        to: "waworiginal@gmail.com",
-        subject: "Your Download Links (" + currDate() + ")",
-        html:
-          "Thanks for your purchase at kouyamusic.com! Here are the download links you requested. " +
-          "An invoice for your lease(s) has been sent in a separate e-mail message. More information about beat leases can be found <a href='https://kouyamusic.com/leases'>here</a>. " +
-          "Please contact <a href='mailto:admin@kouyamusic.com'>admin@kouyamusic.com</a> or <a href='mailto:mariojjuguilon@gmail.com'>mariojjuguilon@gmail.com</a> if you have any questions.",
-      };
-      mg.messages().send(data, function (err, body) {
-        if (err) {
-          console.log(err);
-          res.send(500);
-          return;
-        }
-        console.log(body);
-      });
-      //
+    // "BEAT TITLE" - button linked to zip url
+
+    if (hash === docData.hash) {
+      req.docData = docData;
+      next();
+    } else {
+      res.sendStatus(404);
     }
   });
-});
+};
 
+const sendEmail = (req, res, next) => {
+  const currDate = () => {
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, "0");
+    var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    var yyyy = today.getFullYear();
+
+    return mm + "/" + dd + "/" + yyyy;
+  };
+  console.log("docdata");
+  console.log(req.docData);
+
+  const getRows = (cart) => {
+    let rowsOut = "";
+    console.log(cart);
+    let item;
+    for (var key in cart) {
+      console.log(cart[key]);
+      item = cart[key];
+      rowsOut +=
+        "<tr>" +
+        `<th>${item.title}</th>` +
+        // url: https://kouyamusic.com/api/beatstore/download/{itemid}?id={ID}&hash={HASH}
+        `<th><a href='${YOUR_DOMAIN}/api/beatstore/download/${item.id}?id=${req.params.id}&hash=${req.query.hash}'>Link to download</a></th>` +
+        "</tr>";
+    }
+    return rowsOut;
+  };
+
+  const data = {
+    from: "KOUYA <noreply@kouyamusic.com>",
+    to: req.docData.email,
+    subject: "Your Download Links (" + currDate() + ")",
+    html:
+      "<h3>Thanks for your purchase at kouyamusic.com!<h3>" +
+      "<p>Here are the download links you requested:</p>" +
+      "<table>" +
+      getRows(req.docData.cart) +
+      "</table>" +
+      "<p>An invoice for your lease(s) has been sent in a separate e-mail message. More information about beat leases can be found <a href='https://kouyamusic.com/leases'>here</a>.</p>" +
+      "<p>Please contact <a href='mailto:admin@kouyamusic.com'>admin@kouyamusic.com</a> or <a href='mailto:mariojjuguilon@gmail.com'>mariojjuguilon@gmail.com</a> if you have any questions.</p>",
+  };
+  mg.messages().send(data, function (err, body) {
+    if (err) {
+      console.log(err);
+      res.sendStatus(500);
+      return;
+    }
+    console.log(body);
+    res.redirect(303, YOUR_DOMAIN + "/checkout?success=true");
+  });
+  //
+};
+
+router.get(
+  "/checkout-success/:id",
+  validateRedirect,
+  sendEmail,
+  (req, res) => {}
+);
+
+// required query - email, doc, hash
+// validate doc and hash
+// get signed url for download id (valid for 2 hours)
+// redirect to signed url
+router.get(
+  "/download/:beatid",
+  validateRedirect,
+  queryDownloadGS,
+  (req, res) => {
+    console.log(req.result);
+    res.redirect(303, req.result);
+  }
+);
 module.exports = router;

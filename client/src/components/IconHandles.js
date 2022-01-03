@@ -12,7 +12,6 @@ import { RiInstagramFill as Instagram } from "react-icons/ri";
 import { Container } from "react-bootstrap";
 import styles from "../styles/Icons.module.css";
 
-// TODO: fill out all of these links
 const icons = {
   spotify: (
     <a

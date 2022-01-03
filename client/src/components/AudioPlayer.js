@@ -15,7 +15,10 @@ const AudioPlayer = (props) => {
   const [audioURL, setAudioURL] = React.useState();
   const [audioExpire, setAudioExpire] = React.useState(0);
 
-  const audioExpired = () => audioExpire < Date.now();
+  const audioExpired = React.useCallback(
+    () => audioExpire < Date.now(),
+    [audioExpire]
+  );
 
   // references
   const audioPlayer = React.useRef();
@@ -32,7 +35,7 @@ const AudioPlayer = (props) => {
         setAudioExpire(res.expiration);
       });
     }
-  }, [audioExpire, setAudioURL, props.idx]);
+  }, [audioExpire, setAudioURL, props.idx, audioURL, getAudio]);
 
   React.useEffect(() => {
     if (playArray && isPlaying !== playArray[props.idx]) {

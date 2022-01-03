@@ -1,11 +1,9 @@
 import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { SocialIcons, ProfIcons } from "../components";
-import { GridSpace } from "../utility";
 import styles from "../styles/Contact.module.css";
 
 const Contact = () => {
-  const CARD_PAD_SIZES = { xs: 0, sm: 0, md: 0, lg: 0, xl: 1 };
   return (
     <Container xs={11} md={10} className={styles.mainContainer}>
       <Row className="header-container">

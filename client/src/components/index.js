@@ -4,7 +4,6 @@ import { SocialIcons, ProfIcons, AllIcons } from "./IconHandles";
 import Navbar from "./Navbar";
 import TrackWidget from "./TrackWidget";
 
-// TODO: add proptypes
 export {
   AudioPlayer,
   AllIcons,

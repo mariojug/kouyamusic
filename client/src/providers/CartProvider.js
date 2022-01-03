@@ -18,7 +18,7 @@ const CartProvider = ({ children }) => {
   const leaseOptions = React.useMemo(() => {
     return [
       { price: 0, descript: "select lease" },
-      { price: 40, descript: ".mp3 lease + stems" },
+      { price: 40, descript: ".mp3 lease + master track" },
       { price: 85, descript: ".wav lease + stems" },
     ];
   }, []);
@@ -71,9 +71,12 @@ const CartProvider = ({ children }) => {
     return cart.map((item) => item.id === id).some();
   };
 
-  const handleSubmitCheckout = () => {
+  const handleCheckout = (email) => {
     // make axios post to /create-checkout-session
-    axios.post(API_URL + "/create-checkout-session", { cart: cart });
+    axios.post(API_URL + "/create-checkout-session", {
+      email: email,
+      cart: cart,
+    });
   };
 
   const exports = {
@@ -84,7 +87,7 @@ const CartProvider = ({ children }) => {
     isInCart,
     leaseOptions,
     cartTotal,
-    handleSubmitCheckout,
+    handleCheckout,
   };
 
   return (

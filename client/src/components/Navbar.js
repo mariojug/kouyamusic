@@ -13,9 +13,17 @@ const routes = [
 ];
 
 const NavComponent = () => {
+  const [expanded, setExpanded] = React.useState();
+
   return (
     <>
-      <Navbar bg="dark" variant="dark" expand="lg" fixed="top">
+      <Navbar
+        bg="dark"
+        variant="dark"
+        expand="lg"
+        fixed="top"
+        expanded={expanded}
+      >
         <Container>
           <Navbar.Brand
             key={routes[0].path}
@@ -27,7 +35,10 @@ const NavComponent = () => {
           >
             kouya
           </Navbar.Brand>
-          <Navbar.Toggle aria-controls="nbdd" />
+          <Navbar.Toggle
+            aria-controls="nbdd"
+            onClick={() => setExpanded(expanded ? false : "expanded")}
+          />
           <Navbar.Collapse id="nbdd">
             <Nav className="me-auto">
               {routes.slice(1).map((route) => (
@@ -36,6 +47,7 @@ const NavComponent = () => {
                   as={NavLink}
                   to={route.path}
                   activeClassName="active"
+                  onClick={() => setExpanded(false)}
                   exact
                 >
                   {route.name}

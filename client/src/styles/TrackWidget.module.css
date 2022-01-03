@@ -55,8 +55,8 @@
 .cartFormWrap {
   border-radius: 2rem;
   display: flex;
-  padding: 1.75vmin 1.75vmin 0vmin 0vmin;
-  margin: 1.75vmin 1.75vmin 0vmin 0vmin;
+  padding: 1rem;
+  margin: 1rem;
   flex-direction: column;
   max-width: fit-content;
   max-height: min-content;

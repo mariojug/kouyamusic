@@ -34,7 +34,7 @@ const CartWidget = (props) => {
         setCoverExpire(res.expiration);
       });
     }
-  }, [coverURL, coverExpire, setCoverExpire, setCoverURL, props.id]);
+  }, [coverURL, coverExpire, setCoverExpire, setCoverURL, props.id, getImage]);
 
   const id = props.id;
   const title = getFromSrc(id, "name");
@@ -48,7 +48,7 @@ const CartWidget = (props) => {
     if (cart[id]) {
       setCurrentPrice(leaseOptions[cart[id].type].price);
     }
-  }, [cart[id], setCurrentPrice]);
+  }, [setCurrentPrice, cart, id, leaseOptions]);
 
   const handleAddToCart = () => {
     const coll = parseInt(selectFormRef.current.value);
